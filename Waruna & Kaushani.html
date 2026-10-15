@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Waruna & Kaushani</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcfbfa;
+            color: #333333;
+        }
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .font-cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .gold-text {
+            color: #c5a880;
+        }
+        .gold-bg {
+            background-color: #c5a880;
+        }
+        .gold-border {
+            border-color: #c5a880;
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        /* Highlighted When & Where Card Style */
+        .highlighted-venue-card {
+            border: 1px solid #c5a880;
+            box-shadow: 0 10px 25px -5px rgba(197, 168, 128, 0.15), 0 8px 10px -6px rgba(197, 168, 128, 0.15);
+            background: linear-gradient(to bottom, #ffffff, #fffcf7);
+        }
+        /* Hidden admin trigger area at the bottom */
+        #adminTriggerArea {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        footer:hover #adminTriggerArea {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- AUDIO PLAYER WITH REPEATABLE LOOP -->
+    <audio id="weddingPlayer" loop preload="auto">
+        <source src="https://cdn.jsdelivr.net/gh/anupama-dev/wedding-assets/leberch-invitation-wedding-375839.mp3" type="audio/mpeg">
+        <source src="leberch-invitation-wedding-375839.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- FLOATING MUSIC CONTROLLER BUTTON -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button id="musicToggleButton" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-stone-200 text-[#c5a880] rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform duration-200 focus:outline-none" aria-label="Toggle Background Music">
+            <i id="musicIcon" class="fa-solid fa-compact-disc text-xl"></i>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg h-screen w-full flex flex-col justify-between items-center text-center p-6 text-white relative">
+        <div class="mt-12 tracking-[0.2em] text-xs uppercase font-medium">The Wedding Invitation</div>
+        
+        <div class="my-auto space-y-4">
+            <h1 class="font-cursive text-7xl md:text-9xl gold-text animate-fade-in">Waruna & Kaushani</h1>
+            <p class="font-serif-title tracking-widest text-lg md:text-2xl italic font-light">Are getting married</p>
+            <div class="w-16 h-[1px] bg-white mx-auto opacity-50 my-4"></div>
+            <p class="tracking-[0.15em] text-sm md:text-base">DECEMBER 06, 2026 • PABAWEE REGENCY, BELUMMAHARA, MUDUNGODA, GAMPAHA</p>
+        </div>
+
+        <div class="mb-8 animate-bounce flex flex-col items-center cursor-pointer" onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'});">
+            <span class="text-xs uppercase tracking-widest mb-2 opacity-80">Scroll Down</span>
+            <i class="fa-solid fa-chevron-down text-lg opacity-80"></i>
+        </div>
+    </section>
+
+    <!-- HOSTS & WELCOME SECTION -->
+    <section id="details" class="py-20 px-4 max-w-3xl mx-auto text-center space-y-8">
+        <div class="space-y-2">
+            <span class="gold-text font-cursive text-4xl">Welcome to our Big Day</span>
+            <h2 class="font-serif-title text-3xl md:text-4xl uppercase tracking-wider text-stone-800">With Blessings of Our Parents</h2>
+            <div class="w-24 h-[1px] gold-bg mx-auto my-4"></div>
+        </div>
+
+        <div class="p-8 md:p-12 border border-stone-100 rounded-xl bg-white shadow-sm space-y-6 max-w-2xl mx-auto">
+            <div class="space-y-2 text-stone-700">
+                <p class="font-serif-title text-xl font-medium tracking-wide">Mr. & Mrs. Bandula Ekanayake</p>
+                <p class="text-xs text-stone-400 uppercase tracking-widest">&</p>
+                <p class="font-serif-title text-xl font-medium tracking-wide">Mr. & Mrs. Nishantha Wanniarachchi</p>
+            </div>
+            
+            <div class="py-2 text-stone-500 font-serif-title italic text-sm max-w-md mx-auto leading-relaxed">
+                Request the pleasure of your company to celebrate the wedding of their children
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 font-serif-title text-2xl md:text-3xl font-semibold text-stone-800">
+                <span>Waruna Ekanayake</span>
+                <span class="font-cursive text-2xl gold-text font-normal">&</span>
+                <span>Kaushani Wanniarachchi</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY SECTION (DYNAMICS / UNLOCKED BY ADMIN) -->
+    <section id="gallerySectionWrapper" class="hidden py-20 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-16 space-y-2">
+            <span class="gold-text font-cursive text-4xl">Our Moments</span>
+            <h2 class="font-serif-title text-3xl md:text-4xl uppercase tracking-wider text-stone-800">Photo Gallery</h2>
+            <div class="w-16 h-[1px] gold-bg mx-auto my-2"></div>
+            <p class="text-stone-500 text-xs tracking-widest uppercase mt-2">Captured Moments of Our Journey Together</p>
+        </div>
+
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically loaded photos will appear here -->
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL FOR GALLERY -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-[#c5a880] text-3xl transition z-50" aria-label="Close Lightbox">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl max-h-[85vh] text-center space-y-3">
+            <img id="lightboxImg" src="" alt="Expanded View" class="max-h-[75vh] mx-auto rounded-lg shadow-2xl object-contain">
+            <p id="lightboxCaption" class="font-serif-title text-white text-2xl gold-text tracking-wide"></p>
+        </div>
+    </div>
+
+    <!-- EVENT DETAILS & TIMELINE (EQUAL WIDTH 6/6 COLUMNS WITH HIGHLIGHTED VENUE CARD) -->
+    <section class="py-20 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-16 space-y-2">
+            <span class="gold-text font-cursive text-4xl">The Celebration</span>
+            <h2 class="font-serif-title text-3xl md:text-4xl uppercase tracking-wider text-stone-800">When & Where</h2>
+            <div class="w-16 h-[1px] gold-bg mx-auto my-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="lg:col-span-6 space-y-6 p-8 rounded-xl highlighted-venue-card flex flex-col justify-between">
+                <div class="space-y-6">
+                    <div class="space-y-1">
+                        <i class="fa-regular fa-calendar-days text-2xl gold-text mb-2"></i>
+                        <h4 class="font-serif-title text-xl uppercase tracking-wider font-semibold text-stone-800">Date & Time</h4>
+                        <p class="text-stone-700 text-sm font-medium">Sunday, December 6, 2026</p>
+                        <p class="text-stone-700 text-sm font-medium">From 9:30 AM Onwards</p>
+                        <p class="text-xs gold-text uppercase tracking-widest font-semibold mt-1">(Poruwa Ceremony)</p>
+                    </div>
+                    
+                    <hr class="border-stone-200/60">
+
+                    <div class="space-y-1">
+                        <i class="fa-solid fa-hotel text-2xl gold-text mb-2"></i>
+                        <h4 class="font-serif-title text-xl uppercase tracking-wider font-semibold text-stone-800">Venue</h4>
+                        <p class="text-stone-900 font-semibold text-base">Pabavee Regency</p>
+                        <p class="text-stone-600 text-sm font-light leading-relaxed">
+                            No 150 Belummahara,<br>Mudungoda, Gampaha, Sri Lanka.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <a href="https://maps.google.com/?q=Pabavee+Regency+Belummahara+Mudungoda+Gampaha" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 text-white rounded-full text-xs uppercase tracking-wider font-medium hover:bg-stone-800 transition duration-300 w-full justify-center shadow-sm">
+                        <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 h-80 lg:h-auto min-h-[350px] w-full rounded-xl overflow-hidden shadow-inner border border-stone-200 relative">
+                <iframe 
+                    class="w-full h-full absolute inset-0"
+                    src="https://maps.google.com/maps?q=Pabavee%20Regency,%20Belummahara,%20Mudungoda,%20Gampaha&t=&z=15&ie=UTF-8&iwloc=&output=embed" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER SECTION (MOVED AFTER WHEN & WHERE) -->
+    <section class="bg-stone-900 text-white py-16 px-4 text-center">
+        <h3 class="font-serif-title tracking-widest text-xl uppercase opacity-80 mb-8">Counting Down to Forever</h3>
+        <div class="flex justify-center items-center gap-4 md:gap-8 max-w-xl mx-auto">
+            <div class="flex flex-col items-center bg-stone-800/50 border border-stone-700/50 w-20 h-24 md:w-28 md:h-28 justify-center rounded-lg">
+                <span id="days" class="font-serif-title text-3xl md:text-4xl font-bold gold-text">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">Days</span>
+            </div>
+            <div class="flex flex-col items-center bg-stone-800/50 border border-stone-700/50 w-20 h-24 md:w-28 md:h-28 justify-center rounded-lg">
+                <span id="hours" class="font-serif-title text-3xl md:text-4xl font-bold gold-text">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">Hours</span>
+            </div>
+            <div class="flex flex-col items-center bg-stone-800/50 border border-stone-700/50 w-20 h-24 md:w-28 md:h-28 justify-center rounded-lg">
+                <span id="minutes" class="font-serif-title text-3xl md:text-4xl font-bold gold-text">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">Mins</span>
+            </div>
+            <div class="flex flex-col items-center bg-stone-800/50 border border-stone-700/50 w-20 h-24 md:w-28 md:h-28 justify-center rounded-lg">
+                <span id="seconds" class="font-serif-title text-3xl md:text-4xl font-bold gold-text">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">Secs</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP FORM SECTION -->
+    <section id="rsvp" class="bg-stone-100 py-20 px-4">
+        <div class="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-md border border-stone-200/50">
+            <div class="text-center mb-10 space-y-2">
+                <span class="gold-text font-cursive text-4xl">RSVP</span>
+                <h2 class="font-serif-title text-3xl uppercase tracking-wider text-stone-800">Kindly Respond</h2>
+                <p class="text-xs text-stone-400 font-light tracking-wide uppercase">Please let us know by November 15, 2026[cite: 1]</p>
+                <div class="w-12 h-[1px] gold-bg mx-auto mt-4"></div>
+            </div>
+
+            <form id="weddingRsvpForm" class="space-y-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest font-medium text-stone-600 mb-2">Your Full Name</label>
+                    <input type="text" required name="guest_name" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-800 text-sm focus:outline-none focus:border-[#c5a880] transition" placeholder="e.g., John Doe">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-stone-600 mb-2">Phone Number</label>
+                        <input type="tel" required name="guest_phone" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-800 text-sm focus:outline-none focus:border-[#c5a880] transition" placeholder="e.g., +94 7X XXX XXXX">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-stone-600 mb-2">Will you attend?</label>
+                        <select required name="attendance" id="attendanceSelect" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-800 text-sm focus:outline-none focus:border-[#c5a880] transition">
+                            <option value="Joyfully Accept">Joyfully Accept</option>
+                            <option value="Regretfully Decline">Regretfully Decline</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="attendingDetails" class="space-y-6 transition-all duration-300">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-stone-600 mb-2">Number of Guests (Including you)</label>
+                        <select name="guest_count" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-800 text-sm focus:outline-none focus:border-[#c5a880] transition">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-stone-600 mb-2">Dietary Restrictions / Notes (Optional)</label>
+                        <textarea name="dietary" rows="3" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-800 text-sm focus:outline-none focus:border-[#c5a880] transition resize-none" placeholder="e.g., Vegetarian, No Seafood, Allergies, etc."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 gold-bg hover:bg-[#b5966d] text-white uppercase tracking-widest text-xs font-semibold rounded-lg shadow-sm transition-colors duration-300 mt-4 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Send Response via WhatsApp
+                </button>
+            </form>
+
+            <div id="formSuccessMessage" class="hidden text-center py-8 space-y-3">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-serif-title text-2xl text-stone-800">Redirecting to WhatsApp...</h4>
+                <p class="text-stone-600 text-sm max-w-sm mx-auto">We are opening WhatsApp so you can send your response directly to the couple!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH MINIMIZED HOVER-ONLY ADMIN TRIGGER -->
+    <footer class="bg-stone-900 text-stone-400 text-center py-12 border-t border-stone-800 text-xs tracking-widest space-y-3 relative">
+        <p class="font-cursive text-3xl gold-text tracking-normal mb-1">Waruna & Kaushani</p>
+        <p class="uppercase font-light opacity-60">Waruna & Kaushani Invitation</p>
+        <div id="adminTriggerArea" class="pt-4">
+            <button onclick="openAdminModal()" class="text-stone-500 hover:text-stone-300 underline tracking-wider text-[11px] uppercase transition">
+                <i class="fa-solid fa-lock mr-1"></i> Admin Control Panel
+            </button>
+        </div>
+    </footer>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full p-6 space-y-6 relative shadow-2xl">
+            <button onclick="closeAdminLogin()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-1">
+                <h3 class="font-serif-title text-2xl text-stone-900 font-semibold">Admin Access</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest">Enter password to manage RSVPs & Settings</p>
+            </div>
+            <form id="adminLoginForm" class="space-y-4">
+                <div>
+                    <input type="password" id="adminPasswordInput" required placeholder="Enter admin password" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg text-sm text-stone-800 focus:outline-none focus:border-[#c5a880]">
+                </div>
+                <button type="submit" class="w-full py-3 bg-stone-900 text-white rounded-lg uppercase text-xs tracking-widest font-semibold hover:bg-stone-800 transition">
+                    Unlock Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN CONTROL PANEL DASHBOARD MODAL -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-stone-950/90 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            <!-- Header -->
+            <div class="px-6 py-4 bg-stone-900 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sliders gold-text"></i>
+                    <h3 class="font-serif-title text-xl tracking-wider">Admin Control Panel</h3>
+                </div>
+                <button onclick="closeAdminPanel()" class="text-stone-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6 overflow-y-auto space-y-8 bg-stone-50 flex-1">
+                <!-- Gallery Unlock & Photo Management Card -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b pb-2">
+                        <h4 class="font-serif-title text-lg text-stone-800 font-semibold">Gallery Section & Photo Management</h4>
+                        <div class="flex items-center gap-3">
+                            <span id="galleryStatusBadge" class="text-xs px-2.5 py-1 rounded-full font-medium bg-red-100 text-red-700">Hidden</span>
+                            <button onclick="toggleGalleryVisibility()" id="galleryToggleBtn" class="px-4 py-1.5 rounded-lg text-xs uppercase tracking-wider font-semibold bg-stone-900 text-white hover:bg-stone-800 transition">
+                                Unlock Gallery
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-500">Upload an unlimited number of photos. You can upload local image files or paste image URLs.</p>
+                    
+                    <div class="space-y-3 pt-2">
+                        <div class="flex gap-3">
+                            <input type="text" id="photoUrlInput" class="flex-1 px-4 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:border-[#c5a880]" placeholder="Paste Image URL here...">
+                            <input type="text" id="photoCaptionInput" class="w-1/3 px-4 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:border-[#c5a880]" placeholder="Caption (optional)">
+                            <button onclick="addPhotoByUrl()" class="px-5 py-2 gold-bg text-white rounded-lg text-xs uppercase tracking-wider font-semibold hover:bg-[#b5966d] transition">
+                                Add URL Photo
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-3 pt-2">
+                            <label class="flex-1 cursor-pointer bg-stone-100 hover:bg-stone-200 border border-stone-300 border-dashed rounded-lg p-3 text-center text-xs text-stone-600 transition">
+                                <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Click to Upload Local Photos (Unlimited)
+                                <input type="file" id="localPhotoUpload" accept="image/*" multiple class="hidden" onchange="handleLocalFiles(event)">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Uploaded Photos List Manager -->
+                    <div class="pt-4 border-t">
+                        <h5 class="text-xs uppercase tracking-wider font-semibold text-stone-600 mb-3">Managed Photos (<span id="photoCountNum">0</span>)</h5>
+                        <div id="adminPhotoList" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 bg-stone-50 rounded-lg border">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Card -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+                    <h4 class="font-serif-title text-lg text-stone-800 font-semibold border-b pb-2">WhatsApp Contact Number Configuration</h4>
+                    <p class="text-xs text-stone-500">Update the phone number where guest WhatsApp RSVPs will be sent. Include country code without '+' (e.g., 94712345678).</p>
+                    <div class="flex gap-4">
+                        <input type="text" id="adminWhatsAppInput" class="flex-1 px-4 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:border-[#c5a880]" placeholder="94712345678">
+                        <button onclick="saveWhatsAppNumber()" class="px-5 py-2 gold-bg text-white rounded-lg text-xs uppercase tracking-wider font-semibold hover:bg-[#b5966d] transition">
+                            Save Number
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RSVPs List / Stats -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b pb-2">
+                        <h4 class="font-serif-title text-lg text-stone-800 font-semibold">Submitted RSVPs Log</h4>
+                        <span id="rsvpCountBadge" class="px-3 py-1 bg-stone-100 text-stone-700 rounded-full text-xs font-medium">0 Responses</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-stone-100 text-stone-600 text-xs uppercase tracking-wider">
+                                    <th class="p-3">Name</th>
+                                    <th class="p-3">Phone</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3">Guests</th>
+                                    <th class="p-3">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rsvpTableBody" class="divide-y divide-stone-100 text-stone-700">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // CONFIGURABLE ADMIN SETTINGS & STORAGE
+        let adminSettings = {
+            whatsappNumber: localStorage.getItem('wedding_whatsapp') || "94712345678",
+            adminPass: "Waruna@123",
+            galleryUnlocked: JSON.parse(localStorage.getItem('wedding_gallery_unlocked')) || false
+        };
+
+        // Default initial gallery photos if none added yet
+        let defaultGalleryPhotos = [
+            { url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200', caption: 'Pre-Wedding Celebration' },
+            { url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200', caption: 'Unforgettable Moments' },
+            { url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200', caption: 'Sweet Togetherness' },
+            { url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1200', caption: 'Together Forever' },
+            { url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200', caption: 'Love & Happiness' },
+            { url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1200', caption: 'A New Beginning' }
+        ];
+
+        let galleryPhotos = JSON.parse(localStorage.getItem('wedding_gallery_photos')) || defaultGalleryPhotos;
+        let rsvpList = JSON.parse(localStorage.getItem('wedding_rsvps')) || [];
+
+        // MUSIC PLAYER LOGIC (REPEATABLE LOOP)
+        const weddingPlayer = document.getElementById('weddingPlayer');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                weddingPlayer.pause();
+                musicIcon.classList.remove('animate-spin-slow');
+                isPlaying = false;
+            } else {
+                weddingPlayer.play().then(() => {
+                    musicIcon.classList.add('animate-spin-slow');
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log("Audio play blocked by browser policy until interaction:", error);
+                });
+            }
+        }
+
+        // Auto-play on first user interaction with the page
+        document.body.addEventListener('click', function initAudio() {
+            if (!isPlaying) {
+                weddingPlayer.play().then(() => {
+                    musicIcon.classList.add('animate-spin-slow');
+                    isPlaying = true;
+                }).catch(e => console.log(e));
+            }
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
+
+        // 1. COUNTDOWN TIMER CALCULATOR (Target: Dec 6, 2026, 9:30 AM)
+        const targetWeddingDate = new Date("December 6, 2026 09:30:00").getTime();
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetWeddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // 2. DYNAMIC RSVP FORM ELEMENT TOGGLE
+        const attendanceSelect = document.getElementById("attendanceSelect");
+        const attendingDetails = document.getElementById("attendingDetails");
+
+        attendanceSelect.addEventListener("change", function() {
+            if (this.value === "Regretfully Decline") {
+                attendingDetails.classList.add("hidden");
+            } else {
+                attendingDetails.classList.remove("hidden");
+            }
+        });
+
+        // 3. RSVP FORM HANDLING & WHATSAPP REDIRECT (Works on localhost & online)
+        document.getElementById("weddingRsvpForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const name = formData.get('guest_name');
+            const phone = formData.get('guest_phone');
+            const attendance = formData.get('attendance');
+            const guestCount = attendance === 'Joyfully Accept' ? formData.get('guest_count') : '0';
+            const dietary = formData.get('dietary') || 'None';
+
+            const newRsvp = { name, phone, attendance, guestCount, dietary, date: new Date().toLocaleDateString() };
+            rsvpList.push(newRsvp);
+            localStorage.setItem('wedding_rsvps', JSON.stringify(rsvpList));
+
+            // Format WhatsApp Message
+            const whatsappNumber = adminSettings.whatsappNumber.replace(/[^0-9]/g, '');
+            const message = `*New Wedding RSVP Response*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Status:* ${attendance}\n*Guests:* ${guestCount}\n*Notes/Dietary:* ${dietary}`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            this.classList.add('hidden');
+            document.getElementById('formSuccessMessage').classList.remove('hidden');
+
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1200);
+        });
+
+        // 4. GALLERY RENDER & LIGHTBOX
+        function renderGallery() {
+            const wrapper = document.getElementById('gallerySectionWrapper');
+            const grid = document.getElementById('galleryGrid');
+
+            if (adminSettings.galleryUnlocked) {
+                wrapper.classList.remove('hidden');
+            } else {
+                wrapper.classList.add('hidden');
+                return;
+            }
+
+            grid.innerHTML = '';
+            galleryPhotos.forEach((photo, index) => {
+                const item = document.createElement('div');
+                item.className = "gallery-item relative overflow-hidden rounded-xl bg-white shadow-sm border border-stone-200/60 cursor-pointer group h-72";
+                item.onclick = () => openLightbox(photo.url, photo.caption);
+                item.innerHTML = `
+                    <img src="${photo.url}" alt="${photo.caption || 'Wedding Photo'}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                        <i class="fa-solid fa-magnifying-glass-plus text-2xl gold-text mb-2"></i>
+                        <p class="font-serif-title text-xl font-medium">${photo.caption || 'Captured Moment'}</p>
+                        <span class="text-xs text-stone-200 tracking-wider">Click to view full screen</span>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        function openLightbox(url, caption) {
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('lightboxCaption').innerText = caption || '';
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // 5. ADMIN MODAL CONTROLS
+        function openAdminModal() {
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+        }
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPasswordInput').value;
+            if (pass === adminSettings.adminPass) {
+                closeAdminLogin();
+                document.getElementById('adminPasswordInput').value = '';
+                openAdminPanelDashboard();
+            } else {
+                alert('Incorrect admin password.');
+            }
+        });
+
+        function openAdminPanelDashboard() {
+            document.getElementById('adminWhatsAppInput').value = adminSettings.whatsappNumber;
+            updateGalleryAdminUI();
+            updateRsvpTable();
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+        }
+
+        function saveWhatsAppNumber() {
+            const num = document.getElementById('adminWhatsAppInput').value.trim();
+            if (num) {
+                adminSettings.whatsappNumber = num;
+                localStorage.setItem('wedding_whatsapp', num);
+                alert('WhatsApp number updated successfully!');
+            }
+        }
+
+        function toggleGalleryVisibility() {
+            adminSettings.galleryUnlocked = !adminSettings.galleryUnlocked;
+            localStorage.setItem('wedding_gallery_unlocked', JSON.stringify(adminSettings.galleryUnlocked));
+            updateGalleryAdminUI();
+            renderGallery();
+        }
+
+        function updateGalleryAdminUI() {
+            const badge = document.getElementById('galleryStatusBadge');
+            const btn = document.getElementById('galleryToggleBtn');
+            const list = document.getElementById('adminPhotoList');
+            document.getElementById('photoCountNum').innerText = galleryPhotos.length;
+
+            if (adminSettings.galleryUnlocked) {
+                badge.className = "text-xs px-2.5 py-1 rounded-full font-medium bg-emerald-100 text-emerald-700";
+                badge.innerText = "Unlocked & Visible";
+                btn.innerText = "Lock Gallery";
+                btn.className = "px-4 py-1.5 rounded-lg text-xs uppercase tracking-wider font-semibold bg-red-700 text-white hover:bg-red-800 transition";
+            } else {
+                badge.className = "text-xs px-2.5 py-1 rounded-full font-medium bg-red-100 text-red-700";
+                badge.innerText = "Hidden";
+                btn.innerText = "Unlock Gallery";
+                btn.className = "px-4 py-1.5 rounded-lg text-xs uppercase tracking-wider font-semibold bg-stone-900 text-white hover:bg-stone-800 transition";
+            }
+
+            list.innerHTML = '';
+            galleryPhotos.forEach((photo, idx) => {
+                const div = document.createElement('div');
+                div.className = "relative group rounded-lg overflow-hidden border h-20 bg-stone-100 flex items-center justify-center";
+                div.innerHTML = `
+                    <img src="${photo.url}" class="w-full h-full object-cover">
+                    <button onclick="deletePhoto(${idx})" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs transition">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function addPhotoByUrl() {
+            const urlInput = document.getElementById('photoUrlInput');
+            const captionInput = document.getElementById('photoCaptionInput');
+            if (urlInput.value.trim()) {
+                galleryPhotos.push({ url: urlInput.value.trim(), caption: captionInput.value.trim() || 'Wedding Photo' });
+                localStorage.setItem('wedding_gallery_photos', JSON.stringify(galleryPhotos));
+                urlInput.value = '';
+                captionInput.value = '';
+                updateGalleryAdminUI();
+                renderGallery();
+            }
+        }
+
+        function handleLocalFiles(e) {
+            const files = e.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    galleryPhotos.push({ url: uploadEvent.target.result, caption: 'Wedding Photo' });
+                    localStorage.setItem('wedding_gallery_photos', JSON.stringify(galleryPhotos));
+                    updateGalleryAdminUI();
+                    renderGallery();
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        }
+
+        function deletePhoto(index) {
+            galleryPhotos.splice(index, 1);
+            localStorage.setItem('wedding_gallery_photos', JSON.stringify(galleryPhotos));
+            updateGalleryAdminUI();
+            renderGallery();
+        }
+
+        function updateRsvpTable() {
+            const tbody = document.getElementById('rsvpTableBody');
+            document.getElementById('rsvpCountBadge').innerText = `${rsvpList.length} Responses`;
+            tbody.innerHTML = '';
+
+            if (rsvpList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-stone-400">No RSVPs received yet.</td></tr>`;
+                return;
+            }
+
+            rsvpList.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-medium">${r.name}</td>
+                    <td class="p-3 text-stone-500">${r.phone}</td>
+                    <td class="p-3"><span class="px-2 py-1 rounded text-xs ${r.attendance === 'Joyfully Accept' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}">${r.attendance}</span></td>
+                    <td class="p-3">${r.guestCount}</td>
+                    <td class="p-3 text-stone-500 text-xs">${r.dietary}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Initialize gallery display status on page load
+        renderGallery();
+    </script>
+</body>
+</html>
